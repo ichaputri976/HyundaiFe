@@ -12,7 +12,6 @@ class contact extends Model
     protected $fillable = [
         'alamat',
         'email',
-        'no_hp',
         'whatsapp',
     ];
 }

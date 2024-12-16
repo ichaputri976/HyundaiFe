@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('highlights', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_highlights')->primary()->autoIncrement();
+            $table->enum('type', ['Tersedia','Tidak Tersedia']);
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('testimonis', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_testimoni')->primary()->autoIncrement();
+            $table->string('nama_customer', 100);
+            $table->text('riview');
+            $table->integer('rating');
+            $table->string('image', 255);
             $table->timestamps();
         });
     }

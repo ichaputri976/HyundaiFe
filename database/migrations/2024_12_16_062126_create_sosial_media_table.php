@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sosial_media', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_sosial_media')->primary()->autoIncrement();
+            $table->string('nama_platform', 50);
+            $table->string('link', 255);
             $table->timestamps();
         });
     }
