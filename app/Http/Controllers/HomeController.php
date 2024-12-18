@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\about;
+use App\Models\Home;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function about()
+    public function home()
     {
-        return view('about');
+        return view('home');
     }
 
     /**
@@ -34,7 +34,7 @@ class AboutController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(about $about)
+    public function show( $Home)
     {
         //
     }
@@ -42,7 +42,7 @@ class AboutController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(about $about)
+    public function edit( $Home)
     {
         //
     }
@@ -50,7 +50,7 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, about $about)
+    public function update(Request $request, $Home)
     {
         //
     }
@@ -58,7 +58,7 @@ class AboutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(about $about)
+    public function destroy( $Home)
     {
         //
     }
