@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
