@@ -1,66 +1,97 @@
-@extends('backend.layout.app')
-
-@section('title', 'about')
-
+@extends('backend.layouts.app')
+@section('title', 'About Us')
 @section('content')
 
-<div class="row g-4">
-    <div class="col-12">
-        <div class="bg-light rounded h-100">
-            @if(session('success'))
-            <div class="alert alert-success">
-                <div class="text-center">
-                {{ session('success') }}
+<div class="container-fluid pt-2 px-1">
+    <div class="row bg-light rounded align-items-center mx-0 p-4">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="d-flex align-items-center gap-2">
+                <i class="text-primary fas fa-cog"></i>
+                <h3 class="mb-0 text-dark">About</h3>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <div class="row mt-4">
+        <!-- Form untuk Title -->
+        <div class="col-md-6 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Judul</h5>
+                    <form action="{{ Route('admin.about.save') }}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="title" name="title" value="{{ $aboutUs->title ?? 'Data belum dimasukkan' }}">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            @endif
-            <h6 class="mb-4">Product</h6>
-            <div class="table-responsive">
-                <table class="table" id="product">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama Kategori</th>
-                            <th scope="col">Nama Product</th>
-                            <th scope="col">Deskripsi</th>
-                            <th scope="col">Harga Product</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($products as $product)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $product->category->nama_category }}</td>
-                            <td>{{ $product->nama_product }}</td>
-                            <td>{{ $product->deskripsi }}</td>
-                            <td>{{ $product->harga_product }}</td>
-                            <td>{{ $product->stock_product }}</td>
-                            <td>
-                                <img src="{{ asset('storage/'.$product->foto) }}" alt="" width="30">
-                            </td>
-                            <td>
-                                <a href="{{ route('product.edit', $product->id_product) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{ route('product.delete', $product->id_product) }}"  onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-primary btn-sm">Hapus</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="text-center">
-                    <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm">Tambah</a>
+        </div>
+
+        <!-- Form untuk Description -->
+        <div class="col-md-6 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Deskripsi</h5>
+                    <form action="{{ Route('admin.about.save') }}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ $aboutUs->description ?? 'Data belum dimasukkan' }}</textarea>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form untuk Vision -->
+        <div class="col-md-6 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Visi</h5>
+                    <form action="{{ Route('admin.about.save') }}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <textarea class="form-control" id="vision" name="vision" rows="2">{{ $aboutUs->vision ?? 'Data belum dimasukkan' }}</textarea>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form untuk Mission -->
+        <div class="col-md-6 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Misi</h5>
+                    <form action="{{ Route('admin.about.save') }}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <textarea class="form-control" id="mission" name="mission" rows="2">{{ $aboutUs->mission ?? 'Data belum dimasukkan' }}</textarea>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $('#product').DataTable();
-    });
-</script>
 
 @endsection
